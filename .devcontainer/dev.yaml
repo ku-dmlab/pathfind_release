@@ -1,0 +1,53 @@
+name: base
+channels:
+- conda-forge
+- nvidia
+dependencies:
+- python=3.10
+# PyTorch:
+- pytorch::pytorch=2.1
+- pytorch::pytorch-cuda=11.8
+- pytorch::torchvision
+# Data Science:
+- numpy
+- pandas
+# Plotting:
+- matplotlib
+- networkx
+- plotly
+- seaborn
+# UMAP
+- bokeh
+- datashader
+- holoviews
+- umap-learn
+# Utilities:
+- scalene
+- tqdm
+- notebook
+- pip=23.0.1
+- pip:
+  # Environment
+  - gymnasium
+  - requests
+  - selenium
+  - webdriver-manager
+  # Experiment Trackers
+  - tensorboard
+  - torch_tb_profiler
+  - wandb
+  # OpenAI CLIP
+  - ftfy
+  - regex
+  - git+https://github.com/openai/CLIP.git@a9b1bf5
+  # Utilities:
+  - natsort
+  - Pillow
+  # DevTools
+  - black
+  - isort
+  - ruff
+  - vulture
+  - nvitop
+  # Etc
+  - StrEnum

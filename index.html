@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pathfind</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #pano {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="pano"></div>
+    <script>
+        let sv;
+        function initializeSV() {
+            sv = new google.maps.StreetViewService()
+        }
+
+        window.initialize = initializeSV;
+
+        let panorama;
+        function initializePanorama() {
+            panorama = new google.maps.StreetViewPanorama(
+                document.getElementById("pano"),
+                {
+                    clickToGo: false,
+                    disableDefaultUI: true,
+                }
+            );
+        }
+
+        function processSVData({ data }) {
+            return {
+                pano: data.location.pano,
+                lat: data.location.latLng.lat(),
+                lng: data.location.latLng.lng(),
+                links: data.links,
+            }
+        }
+    </script>
+    <script>
+        fetch("./config.json")
+            .then(response => response.json())
+            .then(config => {
+                let script = document.createElement("script");
+                script.type = "text/javascript";
+                script.defer = true;
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${config.key}&callback=initialize`;
+                document.body.appendChild(script);
+            })
+    </script>
+</body>
+</html>

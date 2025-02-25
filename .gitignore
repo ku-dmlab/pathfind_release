@@ -1,0 +1,28 @@
+# Byte-compiled
+__pycache__/
+
+# Wandb
+wandb/
+
+# jupyter notebook
+# *.ipynb
+.ipynb_checkpoints/*
+*.png
+
+# Debug
+debug.py
+debug.ipynb
+
+# Output
+output/
+output*/
+
+# Configuration
+config.json
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
