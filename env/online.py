@@ -4,11 +4,14 @@
 The agent captures a 600x400-sized RGB image of the current panorama as its observation.
 
 The agent can interact with the environment using five actions:
-- (0) Move forward: navigate to the linked panorama with the closest heading.
-- (1) Move backward: navigate to the linked panorama with the farthest heading.
-- (2) Turn left: rotate the heading counterclockwise by 90 degree.
-- (3) Turn right: rotate the heading clockwise by 90 degree.
+- (0) Move backward: navigate to the linked panorama with the farthest heading.
+- (1) Move forward: navigate to the linked panorama with the closest heading.
+- (2) Turn right: rotate the heading clockwise by 90 degrees.
+- (3) Turn left: rotate the heading counterclockwise by 90 degrees.
 - (4) Take picture: save a 600x400-sized RGB image from the current panorama.
+
+Actions 0/1 retain the public v1.0.0 numeric transitions; their labels above
+describe that behavior. Heading proximity means angular difference, not distance.
 
 The agent receives a reward based on the similarity between text and observation,
 computed by a pre-trained CLIP model, only when it takes a picture. The other actions
@@ -165,9 +168,9 @@ class PathfindEnv(gym.Env):
         elif action == 1:
             self.pf_id = self.service.move(self.pf_id, backward=True)
         elif action == 2:
-            self.pf_id = self.service.move(self.pf_id, 90)
+            self.pf_id = self.service.turn(self.pf_id, 90)
         elif action == 3:
-            self.pf_id = self.service.move(self.pf_id, -90)
+            self.pf_id = self.service.turn(self.pf_id, -90)
         elif action == 4:
             self.cnt_captures += 1
         else:

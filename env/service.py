@@ -95,6 +95,11 @@ class PathfindService:
         return image
     
     def move(self, pf_id: PathfindID, backward=False) -> PathfindID:
+        """Preserve the public v1.0.0 mapping: False selects far, True near.
+
+        The legacy ``backward`` argument is inverted relative to its name.
+        Near/far refer to angular difference from the current heading.
+        """
         try:
             data = self._get_panorama_data(pf_id.pano_id)
             diffs = []

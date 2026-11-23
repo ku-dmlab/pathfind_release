@@ -17,7 +17,7 @@ class Coordinate:
 
     def __init__(self, lat: float, lng: float, heading: int):
         object.__setattr__(self, "lat", round(lat, 6))
-        object.__setattr__(self, "lng", round(lat, 6))
+        object.__setattr__(self, "lng", round(lng, 6))
         object.__setattr__(self, "heading", heading)
         
     def __str__(self) -> str:
